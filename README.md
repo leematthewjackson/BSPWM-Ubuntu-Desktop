@@ -48,6 +48,10 @@ Tap-to-click and tap-and-drag are enabled during build.sh using the standard Xor
 
 Super+Escape opens the system menu. Reboot, Shutdown and Logout are also searchable from Super+Space and use the same confirmation prompts.
 
+## Application appearance
+
+Regular applications default to light GTK appearance. The session does not force a colour scheme at login. Rofi, Polybar and Kitty retain their independent dark themes. Use LXAppearance (Customise Look and Feel) to select a GTK theme. For applications following the GNOME colour preference, run `gsettings set org.gnome.desktop.interface color-scheme prefer-dark` for dark or `gsettings set org.gnome.desktop.interface color-scheme default` to restore the default. Some applications have their own appearance settings.
+
 ## Wallpaper
 
 Launch Azote from Rofi to browse images and set wallpapers graphically. Azote uses Feh on X11; bspwm restores the saved ~/.fehbg at login. Until an image is chosen, the background is dark. Both packages come from Ubuntu Universe.

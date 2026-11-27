@@ -46,7 +46,6 @@ pgrep -u "$UID" -x sxhkd >/dev/null || sxhkd &
 # XDG autostart is run once by our session, not a Hyprland systemd target.
 if [[ ${1:-0} == 0 ]]; then
  dex --autostart --environment BSPWM &
- gsettings set org.gnome.desktop.interface color-scheme prefer-dark || true
 fi
 "$HOME/.config/polybar/launch.sh" &
 if [[ -f "$HOME/.fehbg" ]]; then
