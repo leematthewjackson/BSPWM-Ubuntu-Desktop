@@ -6,7 +6,7 @@ Personal keyboard-first X11 desktop on Ubuntu Server 26.04 LTS. No Dux, Omarchy,
 
 ## Install
 
-Fresh Ubuntu Server 26.04, normal sudo user, local console, DHCP Ethernet recommended. Select Btrfs manually if desired; snapshots are not automated. Do not run on a production workstation or existing desktop.
+Fresh Ubuntu Server 26.04, normal sudo user, local console, DHCP Ethernet recommended. The network conversion replaces existing Netplan YAML; use --keep-network for static addressing, existing Wi-Fi credentials or custom networking. Network conversion over SSH is refused. Select Btrfs manually if desired; snapshots are not automated. Do not run on a production workstation or existing desktop.
 
     sudo apt update
     sudo apt install git

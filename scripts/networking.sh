@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 set -euo pipefail
 [[ $NETWORK == 1 ]] || exit 0
-bash "$PROJECT/scripts/network-preflight.sh"
+if [[ -n ${SSH_CONNECTION:-} ]]; then
+ echo "Network conversion requires a local console. Use --keep-network to skip."
+ exit 1
+fi
 shopt -s nullglob
 # Skip our completed conversion, never replace its original backup.
 files=(/etc/netplan/*.yaml /etc/netplan/*.yml)
