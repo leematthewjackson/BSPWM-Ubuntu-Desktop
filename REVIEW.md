@@ -10,3 +10,6 @@ Compare KEYBINDINGS.md against the intended Omarchy workflow. Test sxhkd brace e
 
 ## Everyday applications and extras
 Verify official Brave/Sublime source definitions and key verification, all Flatpak IDs and exported desktop IDs, MIME defaults from a fresh session, Nextcloud and CopyQ autostart (no duplicate processes), Emote X11 emoji insertion, screenshot capture, Ctrl+Alt+T/L and clipboard privacy settings. Confirm ArtCraft, Claude Code and Desktop+ are absent after default installation. Review extra scripts separately without executing them unless authorised. Check the optional ArtCraft package list, vendor key and source; verify Claude installer consent. Check all new shell scripts with bash -n and ShellCheck.
+
+## Follow-up fixes
+Verify actual Polkit path, packaged XDG autostart filenames (and duplicate agents), bspwm startup argument on quick re-login, locker options, GTK portal selection, dark appearance in GTK and Qt apps, ten workspace distribution and one tray. Test preflight refusals, repeat network installation and original backup, snap purge simulation, browser first-login default, key bundle verification and vendor source definitions. Existing CUPS browsing, xclip and normal sudo timeout retained. Test monitor hotplug separately; no automatic redistribution of existing windows.

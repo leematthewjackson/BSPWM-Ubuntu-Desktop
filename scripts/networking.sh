@@ -1,21 +1,24 @@
 #!/usr/bin/env bash
 set -euo pipefail
 [[ $NETWORK == 1 ]] || exit 0
-# Fresh DHCP systems only. Keep local console available.
-if [[ -n ${SSH_CONNECTION:-} ]]; then
- echo "Refusing network conversion over SSH. Rerun locally or use --keep-network."
- exit 1
-fi
-# Do not discard static addressing, Wi-Fi credentials or custom network definitions.
+bash "$PROJECT/scripts/network-preflight.sh"
 shopt -s nullglob
-for f in /etc/netplan/*.yaml; do
- if sudo grep -Eq 'addresses:|access-points:|routes:|nameservers:|bonds:|bridges:|vlans:' "$f"; then
-  echo "Custom networking in $f; use --keep-network and configure manually."
-  exit 1
- fi
-done
+# Skip our completed conversion, never replace its original backup.
+files=(/etc/netplan/*.yaml /etc/netplan/*.yml)
+if [[ ${#files[@]} == 1 && ${files[0]} == /etc/netplan/01-network-manager-all.yaml ]] &&
+ sudo grep -q 'renderer: NetworkManager' "${files[0]}" &&
+ systemctl is-enabled --quiet NetworkManager.service &&
+ sudo test -f /etc/NetworkManager/conf.d/10-no-assume.conf; then
+ echo "NetworkManager conversion already configured; keeping original backup."
+ exit 0
+fi
+# If a pre-existing configuration already uses NetworkManager, preserve it.
+if sudo netplan get network.renderer 2>/dev/null | grep -qx NetworkManager; then
+ echo "Existing NetworkManager renderer preserved."
+ exit 0
+fi
 backup=$(sudo mktemp -d /root/bspwm-netplan.XXXXXX)
-for f in /etc/netplan/*.yaml; do sudo mv "$f" "$backup/"; done
+for f in "${files[@]}"; do sudo mv "$f" "$backup/"; done
 printf 'network:\n  version: 2\n  renderer: NetworkManager\n' | sudo tee /etc/netplan/01-network-manager-all.yaml >/dev/null
 sudo chmod 600 /etc/netplan/01-network-manager-all.yaml
 if ! sudo netplan generate; then

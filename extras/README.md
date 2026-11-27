@@ -6,3 +6,5 @@ Neither script is invoked by install.sh. Run from the repository as your normal 
 - `./extras/claude-code.sh`: downloads the official vendor installer, displays it and asks before execution. No sudo required. Sign in separately. Vendor updater is independent of APT.
 
 Desktop+ is intentionally excluded. The desktop must work without either extra. ArtCraft updates via APT; Claude Code uses its own updater.
+
+The Claude bootstrap downloads a binary; displaying the shell script is not an audit of that binary.

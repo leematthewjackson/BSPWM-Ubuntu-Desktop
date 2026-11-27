@@ -33,8 +33,8 @@ Based on the owner's active Omarchy report, November 2026. These are intended eq
 | Super + P | Pseudo-tiling |
 | Super + J | Rotate parent split (approximation) |
 | Super + L / Alt + Super + L | Toggle tiled/monocle layout |
-| Super + minus / equals | Horizontal resize |
-| Super + Shift + minus / equals | Vertical resize |
+| Super + minus / equals | Horizontal resize (minus: left edge; equals: right edge, fallback opposite edge) |
+| Super + Shift + minus / equals | Vertical resize (minus: top edge; equals: bottom edge) |
 | Add Alt / Ctrl to resize | Fine / large increments |
 | Super + K | This shortcut guide |
 | Super + Ctrl + A/B/D/N/P | Audio/Bluetooth/display/network/power settings |

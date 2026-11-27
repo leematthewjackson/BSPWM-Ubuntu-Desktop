@@ -1,6 +1,5 @@
 [Desktop Entry]
 Type=Application
-Name=BSPWM locker
-Exec=light-locker
+Name=xfce4-power-manager
+Exec=xfce4-power-manager
 OnlyShowIn=BSPWM;
-

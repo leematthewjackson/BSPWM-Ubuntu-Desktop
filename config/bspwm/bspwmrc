@@ -1,12 +1,26 @@
 #!/usr/bin/env bash
 # Ordinary X11 session; no third-party desktop framework.
-export XDG_CURRENT_DESKTOP=bspwm
-export XDG_SESSION_DESKTOP=bspwm
+export XDG_CURRENT_DESKTOP=BSPWM
+export XDG_SESSION_DESKTOP=BSPWM
+export PATH="$HOME/.local/bin:$PATH"
 dbus-update-activation-environment --systemd DISPLAY XAUTHORITY XDG_CURRENT_DESKTOP XDG_SESSION_DESKTOP PATH
-# Keep desktops on the primary monitor; add secondary workspaces on other outputs.
+# Allocate ten named workspaces across connected outputs on initial startup.
 if ! bspc query -D --names | grep -qx 1; then
- primary=$(bspc query -M --names | head -n1)
- bspc monitor "$primary" -d 1 2 3 4 5 6 7 8 9 10
+ mapfile -t monitors < <(bspc query -M --names)
+ primary=$(bspc query -M -m primary --names 2>/dev/null) || primary="${monitors[0]}"
+ ordered=("$primary")
+ for monitor in "${monitors[@]}"; do [[ "$monitor" == "$primary" ]] || ordered+=("$monitor"); done
+ count=${#ordered[@]}
+ if (( count > 0 )); then
+  next=1
+  for ((i=0;i<count;i++)); do
+   slots=$((10/count + (i < 10%count)))
+   desks=()
+   for ((j=0;j<slots;j++)); do desks+=("$next"); ((next+=1)); done
+   if (( slots == 0 )); then desks=("extra-$i"); fi
+   bspc monitor "${ordered[i]}" -d "${desks[@]}"
+  done
+ fi
 fi
 bspc config pointer_modifier mod4
 bspc config pointer_action1 move
@@ -28,9 +42,9 @@ bspc rule -a Lxappearance state=floating
 # sxhkd must be running before anything else.
 pgrep -u "$UID" -x sxhkd >/dev/null || sxhkd &
 # XDG autostart is run once by our session, not a Hyprland systemd target.
-if [[ ! -e "${XDG_RUNTIME_DIR}/bspwm-autostart-$DISPLAY" ]]; then
- touch "${XDG_RUNTIME_DIR}/bspwm-autostart-$DISPLAY"
+if [[ ${1:-0} == 0 ]]; then
  dex --autostart --environment BSPWM &
+ gsettings set org.gnome.desktop.interface color-scheme prefer-dark || true
 fi
 "$HOME/.config/polybar/launch.sh" &
 nitrogen --restore || xsetroot -solid '#1e1e2e'

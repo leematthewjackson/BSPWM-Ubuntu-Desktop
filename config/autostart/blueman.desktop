@@ -1,6 +1,5 @@
 [Desktop Entry]
 Type=Application
-Name=BSPWM network
-Exec=nm-applet
+Name=blueman
+Exec=blueman-applet
 OnlyShowIn=BSPWM;
-

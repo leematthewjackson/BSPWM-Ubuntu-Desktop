@@ -22,3 +22,15 @@ for type in inode/directory text/plain text/html application/pdf image/png video
 done
 echo "Manual app tests: Super+E emoji paste, Print screenshot, Super+Ctrl+V clipboard, Nextcloud tray, browser/editor launch, file associations."
 echo "Review CopyQ privacy settings; this check does not read clipboard contents."
+
+agent=$(dpkg -L mate-polkit 2>/dev/null | grep '/polkit-mate-authentication-agent-1$' | head -n1)
+if [[ -n "$agent" && -x "$agent" ]]; then echo "OK Polkit executable: $agent"; else echo "MISSING Polkit executable"; fi
+for proc in nm-applet blueman-applet light-locker xfce4-power-manager; do
+ echo "$proc process count: $(pgrep -u "$UID" -x "$proc" | wc -l)"
+done
+echo "Session desktop: ${XDG_CURRENT_DESKTOP:-unset}"
+echo "Default browser: $(xdg-settings get default-web-browser 2>/dev/null)"
+bspc query -M --names
+bspc query -D --names
+echo "Portal preferences:"; cat "$HOME/.config/xdg-desktop-portal/bspwm-portals.conf" 2>/dev/null
+echo "Critical manual check: suspend and close lid, resume must require password."

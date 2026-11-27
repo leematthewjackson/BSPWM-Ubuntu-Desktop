@@ -1,0 +1,5 @@
+[Desktop Entry]
+Type=Application
+Name=Initial default browser
+Exec=desktop-browser-default
+OnlyShowIn=BSPWM;

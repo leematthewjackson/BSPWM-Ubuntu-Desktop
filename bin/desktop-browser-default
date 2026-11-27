@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# Apply only once, respecting future user changes.
+state="$HOME/.local/state/bspwm-desktop/browser-default-set"
+[[ ! -e "$state" ]] || exit 0
+mkdir -p "$(dirname "$state")"
+xdg-settings set default-web-browser org.mozilla.firefox.desktop && touch "$state"

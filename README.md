@@ -12,16 +12,15 @@ Fresh Ubuntu Server 26.04, normal sudo user, local console, DHCP Ethernet recomm
     sudo apt install git
     git clone https://github.com/leematthewjackson/BSPWM-Ubuntu-Desktop.git
     cd BSPWM-Ubuntu-Desktop
-    ./install.sh --nvidia
-    sudo reboot
+    ./install.sh --nvidia && sudo reboot
 
-Omit --nvidia for Intel/AMD. All everyday apps are installed by default; --apps is accepted for backwards compatibility. Verify the Brave and Sublime Text signing keys against their official documentation when prompted. --keep-network leaves existing Netplan untouched. Installer runs all local stages; no external framework installer. Complete MOK enrolment if prompted. Log in through LightDM (bspwm session). Run desktop-doctor inside the session.
+Omit --nvidia for Intel/AMD. All everyday apps are installed by default; --apps is accepted for backwards compatibility. Verify the Brave and Sublime Text full primary signing fingerprints against their official documentation when prompted; installer rejects unapproved keys. --keep-network leaves existing Netplan untouched; networkd-managed interfaces may appear unmanaged in nm-applet and require manual Wi-Fi configuration. Installer runs all local stages; no external framework installer. Complete MOK enrolment if prompted. Log in through LightDM (bspwm session). Run desktop-doctor inside the session.
 
 ## Design
 
 - Ubuntu's packages, LightDM/PAM, MATE Polkit, GNOME Keyring, XDG desktop autostart via dex.
 - bspwm longest-side tiling, sxhkd, Polybar, Rofi, Picom, Thunar and independent utilities.
-- UK keyboard, dark theme, one bar per monitor. Multi-monitor workspace assignment and mixed DPI need review.
+- UK keyboard, dark theme, one bar per monitor. Ten numbered workspaces are distributed across connected monitors at first login. A single primary system tray; hotplug and mixed DPI need hardware testing.
 - Existing configuration files backed up under ~/.local/state/bspwm-desktop. Log there too.
 - No automatic AI or third-party repositories for core desktop packages. Brave and Sublime Text use their official APT repositories only for applications.
 

@@ -1,6 +1,0 @@
-[Desktop Entry]
-Type=Application
-Name=BSPWM power
-Exec=xfce4-power-manager
-OnlyShowIn=BSPWM;
-

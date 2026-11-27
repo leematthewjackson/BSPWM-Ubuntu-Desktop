@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+set -euo pipefail
+agent=$(dpkg -L mate-polkit | grep '/polkit-mate-authentication-agent-1$' | head -n1)
+[[ -n "$agent" && -x "$agent" ]] || { echo "MATE Polkit agent missing" >&2; exit 1; }
+exec "$agent"

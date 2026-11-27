@@ -19,6 +19,7 @@ echo "Existing configuration files will be backed up. Snap removal is permanent.
 read -rp "Continue? [y/N] " answer
 [[ $answer == y || $answer == Y ]] || exit 0
 sudo -v
+bash "$PROJECT/scripts/network-preflight.sh"
 mkdir -p "$HOME/.local/state/bspwm-desktop"
 exec > >(tee -a "$HOME/.local/state/bspwm-desktop/install.log") 2>&1
 trap 'echo "Installation failed at line $LINENO. Review install.log; do not reboot blindly."' ERR
