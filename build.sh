@@ -33,6 +33,20 @@ done < <(find "$PROJECT/config" -type f -print0)
 chmod +x "$HOME/.config/bspwm/bspwmrc" "$HOME/.config/polybar/launch.sh"
 install -m 644 "$PROJECT/KEYBINDINGS.md" "$HOME/.config/bspwm/KEYBINDINGS.md"
 install -m 755 "$PROJECT"/bin/* "$HOME/.local/bin/"
+
+# Standard per-user application launchers, using the existing power confirmation menu.
+mkdir -p "$HOME/.local/share/applications"
+for action in Reboot Shutdown Logout; do
+ cat > "$HOME/.local/share/applications/desktop-${action,,}.desktop" <<EOF
+[Desktop Entry]
+Type=Application
+Name=$action
+Exec="$HOME/.local/bin/desktop-power" $action
+Icon=system-${action,,}
+Terminal=false
+Categories=System;
+EOF
+done
 rmdir "$backup" 2>/dev/null || echo "Previous desktop configs: $backup"
 
 echo "==> Set application defaults"

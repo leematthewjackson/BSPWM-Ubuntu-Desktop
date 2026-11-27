@@ -2,7 +2,7 @@
 
 Personal keyboard-first X11 desktop on Ubuntu Server 26.04 LTS. No Dux, Omarchy, Hyprland, Snap or AI runtime. The main installer uses only Ubuntu repositories and Flathub. Third-party vendor repositories and installers are separate, optional extras.
 
-**Status: two-stage installation successfully tested on a ThinkPad P53 (27 November 2026). Desktop login, core autostart, NVIDIA, Ethernet and audio detection confirmed. Brightness group membership, Polybar spacing and Rofi theme verified manually. New border and corner styling awaits visual testing. Other hardware and peripheral functions still need acceptance testing.**
+**Status: two-stage installation successfully tested on a ThinkPad P53 (27 November 2026). Desktop login, core autostart, NVIDIA, Ethernet and audio detection confirmed. Brightness group membership, Polybar spacing and Rofi theme verified manually. Border styling, GLX rounded corners and searchable Rofi power launchers verified manually. Other hardware and peripheral functions still need acceptance testing.**
 
 ## Install
 
@@ -39,6 +39,10 @@ There are only two installation scripts. Both run directly in the terminal with 
 - Preserve familiar keyboard shortcuts where native bspwm supports them. Do not add compatibility hacks solely to emulate Omarchy.
 
 The underlying package selection and networking approach are adapted from [Dux Desktop on Ubuntu LTS](https://github.com/leematthewjackson/Dux-Desktop-on-Ubuntu-LTS), without installing Dux.
+
+## Power controls
+
+Super+Escape opens the system menu. Reboot, Shutdown and Logout are also searchable from Super+Space and use the same confirmation prompts.
 
 ## Wallpaper
 

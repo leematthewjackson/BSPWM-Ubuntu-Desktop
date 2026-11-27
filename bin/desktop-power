@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
-choice=$(printf '%s\n' Lock Logout Suspend Reboot Shutdown | rofi -dmenu -i -p System) || exit 0
+if [[ -n ${1:-} ]]; then
+ choice="$1"
+else
+ choice=$(printf '%s\n' Lock Logout Suspend Reboot Shutdown | rofi -dmenu -i -p System) || exit 0
+fi
 case "$choice" in
  Lock) light-locker-command -l;;
  Logout|Suspend|Reboot|Shutdown)
