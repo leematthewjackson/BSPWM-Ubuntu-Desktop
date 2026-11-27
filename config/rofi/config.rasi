@@ -1,0 +1,10 @@
+configuration {
+ modi: "drun,run,window";
+ show-icons: true;
+ font: "DejaVu Sans 12";
+}
+* { background-color: #1e1e2e; text-color: #cdd6f4; }
+window { width: 45%; border: 2px; border-color: #89b4fa; padding: 12px; }
+element { padding: 8px; }
+element selected { background-color: #45475a; }
+

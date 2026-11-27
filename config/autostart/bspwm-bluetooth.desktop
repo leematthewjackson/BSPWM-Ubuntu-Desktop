@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=BSPWM bluetooth
+Exec=blueman-applet
+OnlyShowIn=BSPWM;
+

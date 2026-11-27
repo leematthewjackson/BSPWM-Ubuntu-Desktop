@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# Read-only checks; no repair or secret retrieval.
+for cmd in bspc sxhkd polybar rofi picom nmcli wpctl flatpak secret-tool lpstat; do
+ command -v "$cmd" >/dev/null && echo "OK command $cmd" || echo "MISSING $cmd"
+done
+for unit in lightdm NetworkManager cups bluetooth; do systemctl is-active "$unit" | xargs echo "$unit:"; done
+for proc in sxhkd polybar picom light-locker gnome-keyring-daemon; do
+ pgrep -u "$UID" -f "$proc" >/dev/null && echo "RUNNING $proc" || echo "CHECK $proc"
+done
+busctl --user list | grep -E 'org.freedesktop.secrets|org.freedesktop.portal.Desktop' || true
+nmcli device status
+wpctl status
+lpstat -e
+echo "Manual tests required: authentication, keyring unlock, screen lock, screen sharing, sleep, printing and monitors."
+

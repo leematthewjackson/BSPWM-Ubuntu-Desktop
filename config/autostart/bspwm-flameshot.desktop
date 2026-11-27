@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=BSPWM flameshot
+Exec=flameshot
+OnlyShowIn=BSPWM;
+

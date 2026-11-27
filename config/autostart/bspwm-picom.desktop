@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=BSPWM picom
+Exec=picom
+OnlyShowIn=BSPWM;
+

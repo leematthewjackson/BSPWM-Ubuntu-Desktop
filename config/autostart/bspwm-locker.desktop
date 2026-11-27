@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=BSPWM locker
+Exec=light-locker
+OnlyShowIn=BSPWM;
+

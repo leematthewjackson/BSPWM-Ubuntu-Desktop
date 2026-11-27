@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=BSPWM network
+Exec=nm-applet
+OnlyShowIn=BSPWM;
+

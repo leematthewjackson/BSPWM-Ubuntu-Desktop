@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=BSPWM polkit
+Exec=/usr/lib/mate-polkit/polkit-mate-authentication-agent-1
+OnlyShowIn=BSPWM;
+

@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+# Ordinary X11 session; no third-party desktop framework.
+export XDG_CURRENT_DESKTOP=bspwm
+export XDG_SESSION_DESKTOP=bspwm
+dbus-update-activation-environment --systemd DISPLAY XAUTHORITY XDG_CURRENT_DESKTOP XDG_SESSION_DESKTOP PATH
+# Keep desktops on the primary monitor; add secondary workspaces on other outputs.
+if ! bspc query -D --names | grep -qx 1; then
+ primary=$(bspc query -M --names | head -n1)
+ bspc monitor "$primary" -d 1 2 3 4 5 6 7 8 9
+fi
+bspc config border_width 2
+bspc config window_gap 10
+bspc config split_ratio 0.5
+bspc config automatic_scheme longest_side
+bspc config focus_follows_pointer false
+bspc config pointer_follows_focus false
+bspc config focused_border_color '#89b4fa'
+bspc config normal_border_color '#313244'
+bspc config borderless_monocle true
+bspc config gapless_monocle true
+bspc rule -a Pavucontrol state=floating
+bspc rule -a Blueman-manager state=floating
+bspc rule -a Arandr state=floating
+bspc rule -a Lxappearance state=floating
+# sxhkd must be running before anything else.
+pgrep -u "$UID" -x sxhkd >/dev/null || sxhkd &
+# XDG autostart is run once by our session, not a Hyprland systemd target.
+if [[ ! -e "${XDG_RUNTIME_DIR}/bspwm-autostart-$DISPLAY" ]]; then
+ touch "${XDG_RUNTIME_DIR}/bspwm-autostart-$DISPLAY"
+ dex --autostart --environment BSPWM &
+fi
+"$HOME/.config/polybar/launch.sh" &
+nitrogen --restore || xsetroot -solid '#1e1e2e'
+

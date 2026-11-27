@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+choice=$(printf '%s\n' Lock Logout Suspend Reboot Shutdown | rofi -dmenu -i -p System) || exit 0
+case "$choice" in
+ Lock) light-locker-command -l;;
+ Logout|Suspend|Reboot|Shutdown)
+  [[ $(printf 'No\nYes\n' | rofi -dmenu -p "Confirm $choice") == Yes ]] || exit 0
+  case "$choice" in
+   Logout) bspc quit;;
+   Suspend) systemctl suspend;;
+   Reboot) systemctl reboot;;
+   Shutdown) systemctl poweroff;;
+  esac;;
+esac
+
