@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Read-only checks; no repair or secret retrieval.
-for cmd in bspc sxhkd polybar rofi picom nmcli wpctl flatpak secret-tool lpstat flameshot copyq vlc; do
+for cmd in bspc sxhkd polybar rofi picom nmcli wpctl flatpak secret-tool lpstat flameshot copyq vlc azote feh; do
  command -v "$cmd" >/dev/null && echo "OK command $cmd" || echo "MISSING $cmd"
 done
 for unit in lightdm NetworkManager cups bluetooth; do systemctl is-active "$unit" | xargs echo "$unit:"; done
@@ -23,9 +23,9 @@ done
 echo "Manual app tests: Super+E emoji paste, Print screenshot, Super+Ctrl+V clipboard, Nextcloud tray, browser/editor launch, file associations."
 echo "Review CopyQ privacy settings; this check does not read clipboard contents."
 
-agent=$(dpkg -L mate-polkit 2>/dev/null | grep '/polkit-mate-authentication-agent-1$' | head -n1)
+agent=/usr/libexec/polkit-mate-authentication-agent-1
 if [[ -n "$agent" && -x "$agent" ]]; then echo "OK Polkit executable: $agent"; else echo "MISSING Polkit executable"; fi
-for proc in nm-applet blueman-applet light-locker xfce4-power-manager; do
+for proc in nm-applet blueman-applet light-locker xfce4-power-manager picom; do
  echo "$proc process count: $(pgrep -u "$UID" -x "$proc" | wc -l)"
 done
 echo "Session desktop: ${XDG_CURRENT_DESKTOP:-unset}"

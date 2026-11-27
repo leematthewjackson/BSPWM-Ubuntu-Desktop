@@ -10,3 +10,5 @@ Use Ctrl+Alt+F3 for a TTY. Log in with your normal sudo account.
 
 
 Network conversion over SSH is refused before package changes. No custom Netplan preflight is performed; use a fresh DHCP Ethernet installation or --keep-network for custom configurations. Completed NetworkManager conversions are skipped; preserve the original printed backup. If networking is managed by networkd and --keep-network was used, nm-applet cannot manage those interfaces. For a display issue, use ARandR and restart bspwm with Super+Alt+R to refresh bars; hotplug is not fully automated. If the locker does not require a password on resume, do not use the desktop for sensitive work until fixed. Check journalctl --user -b and run desktop-doctor.
+
+Snap removal can remove ubuntu-server and ubuntu-server-minimal metapackages. Installed direct dependencies and recommendations are marked manual first. Use apt autoremove --dry-run to inspect candidates; do not automatically remove them. Reassess metapackages and Snap pin before a future release upgrade.

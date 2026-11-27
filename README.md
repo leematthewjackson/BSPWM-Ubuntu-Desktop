@@ -27,6 +27,10 @@ Omit --nvidia for Intel/AMD. All everyday apps are installed by default; --apps 
 
 The underlying package selection and networking approach are adapted from [Dux Desktop on Ubuntu LTS](https://github.com/leematthewjackson/Dux-Desktop-on-Ubuntu-LTS), without installing Dux.
 
+## Wallpaper
+
+Launch Azote from Rofi to browse images and set wallpapers graphically. Azote uses Feh on X11; bspwm restores the saved ~/.fehbg at login. Until an image is chosen, the background is dark. Both packages come from Ubuntu Universe.
+
 ## Everyday applications
 
 APT: VLC, Flameshot, CopyQ, Thunar, Kitty, GNOME Text Editor and Calculator.
@@ -36,6 +40,8 @@ Nextcloud starts in the tray at login; sign in manually. CopyQ starts automatica
 Optional: see [extras/README.md](extras/README.md) for independent ArtCraft, Brave, Sublime Text and Claude Code installers. Desktop+ is not included. The main installer never calls any extra.
 
 ## Maintenance
+
+As in the Dux setup, Snap is purged and pinned out. Ubuntu Server metapackages may be removed because they depend on snapd; the installer marks their installed direct dependencies and recommendations manual before purging and refuses unexpected package removals. Never run autoremove blindly. Review metapackage requirements before a future Ubuntu release upgrade.
 
     sudo apt update && sudo apt upgrade
     flatpak update

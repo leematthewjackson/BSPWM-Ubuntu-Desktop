@@ -7,7 +7,8 @@ dbus-update-activation-environment --systemd DISPLAY XAUTHORITY XDG_CURRENT_DESK
 # Allocate ten named workspaces across connected outputs on initial startup.
 if ! bspc query -D --names | grep -qx 1; then
  mapfile -t monitors < <(bspc query -M --names)
- primary=$(bspc query -M -m primary --names 2>/dev/null) || primary="${monitors[0]}"
+ primary=$(xrandr --query | awk '$2=="connected" && $3=="primary"{print $1;exit}')
+ [[ -n "$primary" ]] || primary="${monitors[0]}"
  ordered=("$primary")
  for monitor in "${monitors[@]}"; do [[ "$monitor" == "$primary" ]] || ordered+=("$monitor"); done
  count=${#ordered[@]}
@@ -47,5 +48,9 @@ if [[ ${1:-0} == 0 ]]; then
  gsettings set org.gnome.desktop.interface color-scheme prefer-dark || true
 fi
 "$HOME/.config/polybar/launch.sh" &
-nitrogen --restore || xsetroot -solid '#1e1e2e'
+if [[ -f "$HOME/.fehbg" ]]; then
+ sh "$HOME/.fehbg" || xsetroot -solid '#1e1e2e'
+else
+ xsetroot -solid '#1e1e2e'
+fi
 
