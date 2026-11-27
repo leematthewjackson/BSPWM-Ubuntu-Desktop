@@ -2,26 +2,39 @@
 
 Personal keyboard-first X11 desktop on Ubuntu Server 26.04 LTS. No Dux, Omarchy, Hyprland, Snap or AI runtime. The main installer uses only Ubuntu repositories and Flathub. Third-party vendor repositories and installers are separate, optional extras.
 
-**Status: first hardware test confirmed package installation, but exposed terminal and keyboard configuration errors. Revised installer not yet retested. Use a disposable fresh installation.**
+**Status: first hardware test confirmed package installation, but exposed terminal and keyboard configuration errors. Two-stage Dux-based installation not yet retested. Use a disposable fresh installation.**
 
 ## Install
 
-Fresh Ubuntu Server 26.04, normal sudo user, local console, DHCP Ethernet recommended. The network conversion replaces existing Netplan YAML; use --keep-network for static addressing, existing Wi-Fi credentials or custom networking. Network conversion over SSH is refused. Select Btrfs manually if desired; snapshots are not automated. Do not run on a production workstation or existing desktop.
+Fresh Ubuntu Server 26.04, normal sudo user, local console, DHCP Ethernet. Keep your Ubuntu installation choices. Back up data before testing. For custom networking use --keep-network.
+
+### 1. Prepare Ubuntu
 
     sudo apt update
-    sudo apt install git
+    sudo apt install -y git
     git clone https://github.com/leematthewjackson/BSPWM-Ubuntu-Desktop.git
     cd BSPWM-Ubuntu-Desktop
-    ./install.sh --nvidia && sudo reboot
+    ./base.sh --nvidia && sudo reboot
 
-Omit --nvidia for Intel/AMD. All everyday apps are installed by default. No additional vendor APT keys or repositories are needed by the main installer. --keep-network leaves existing Netplan untouched; networkd-managed interfaces may appear unmanaged in nm-applet and require manual Wi-Fi configuration. Installer runs all local stages; no external framework installer. If Ubuntu asks for a display manager, select lightdm. Complete MOK enrolment if prompted. Log in through LightDM (bspwm session). Run desktop-doctor inside the session.
+Omit --nvidia for Intel/AMD. This stage follows Dux's working base setup: updates, Snap purge/pin, desktop plumbing, Flathub, optional NVIDIA and NetworkManager last. Complete MOK enrolment if prompted.
+
+### 2. Build the desktop after reboot
+
+    nmcli device status
+    nvidia-smi
+    cd ~/BSPWM-Ubuntu-Desktop
+    ./build.sh && sudo reboot
+
+The NVIDIA check is only for NVIDIA installations. Confirm networking works before proceeding. Select lightdm if Ubuntu prompts for a display manager. After the second reboot choose bspwm at LightDM and log in. Super+Enter opens Kitty; run desktop-doctor.
+
+There are only two installation scripts. Both run directly in the terminal with normal sudo and package prompts. No external desktop framework is installed. Optional vendor apps remain independent.
 
 ## Design
 
 - Ubuntu's packages, LightDM/PAM, MATE Polkit, GNOME Keyring, XDG desktop autostart via dex.
 - bspwm longest-side tiling, sxhkd, Polybar, Rofi, Picom, Thunar and independent utilities.
 - Existing Ubuntu keyboard, language and regional preferences are untouched; dark theme, one bar per monitor. Ten numbered workspaces are distributed across connected monitors at first login. A single primary system tray; hotplug and mixed DPI need hardware testing.
-- Existing desktop configuration files are backed up under ~/.config/bspwm-desktop-backup.*. Installer runs directly in the terminal without output redirection.
+- Existing desktop configuration files are backed up under ~/.config/bspwm-desktop-backup.*. Scripts run directly in the terminal without output redirection.
 - Prefer native commands and ordinary configuration over custom runtime helpers. No automatic AI, third-party APT repositories or vendor installers in the main installation.
 - Preserve familiar keyboard shortcuts where native bspwm supports them. Do not add compatibility hacks solely to emulate Omarchy.
 

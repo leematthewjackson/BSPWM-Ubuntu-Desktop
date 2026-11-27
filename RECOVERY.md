@@ -1,16 +1,14 @@
 # Recovery
 
-Use Ctrl+Alt+F3 for a TTY. Log in with your normal sudo account.
+Use Ctrl+Alt+F3 for a TTY and log in as your normal sudo user.
 
-- Inspect journalctl -b -u lightdm and /var/log/apt/term.log. The installer prints the failing stage directly.
+- After base.sh, reboot and check nmcli device status (and nvidia-smi for NVIDIA) before running build.sh.
+- If a package operation fails, read its terminal output and /var/log/apt/term.log. Check sudo dpkg --audit. Do not reboot halfway through a failed build.
+- If the display manager is wrong, run sudo dpkg-reconfigure lightdm directly and choose lightdm. Check journalctl -b -u lightdm.
 - To boot to console: sudo systemctl set-default multi-user.target; reboot. Restore graphical.target after fixing.
-- Backups of overwritten user configuration are in ~/.config/bspwm-desktop-backup.*.
-- Network rollback: identify the correct /root/bspwm-netplan.* backup printed by installer. Remove /etc/netplan/01-network-manager-all.yaml, restore original YAML from that backup, remove /etc/cloud/cloud.cfg.d/99-bspwm-disable-network-config.cfg and /etc/NetworkManager/conf.d/10-no-assume.conf if created by this installer. Enable systemd-networkd.service and systemd-networkd.socket if originally enabled; disable NetworkManager if it was not originally enabled. Run sudo netplan generate and reboot from local console. Review original configuration rather than applying these steps blindly.
-- No full system rollback is provided. Take a VM snapshot or disk image before testing.
+- Previous desktop configuration files are backed up under ~/.config/bspwm-desktop-backup.*.
+- Networking follows Dux: original 00-installer-config.yaml or 50-cloud-init.yaml is backed up in /root with a .bak suffix. For rollback from local console, remove /etc/netplan/01-network-manager-all.yaml, restore original YAML, remove /etc/NetworkManager/conf.d/10-no-assume.conf if created by base.sh, restore original network service enablement, run sudo netplan generate and reboot. Inspect the original configuration before doing this. Use --keep-network for custom networking.
+- Snap purge may remove Ubuntu Server metapackages; never run apt autoremove blindly. Review the Snap pin and metapackages before a release upgrade.
+- If suspend/resume does not require a password, do not use the desktop for sensitive work until fixed.
 
-
-Network conversion over SSH is refused before package changes. No custom Netplan preflight is performed; use a fresh DHCP Ethernet installation or --keep-network for custom configurations. Completed NetworkManager conversions are skipped; preserve the original printed backup. If networking is managed by networkd and --keep-network was used, nm-applet cannot manage those interfaces. For a display issue, use ARandR and restart bspwm with Super+Alt+R to refresh bars; hotplug is not fully automated. If the locker does not require a password on resume, do not use the desktop for sensitive work until fixed. Check journalctl --user -b and run desktop-doctor.
-
-Snap removal can remove ubuntu-server and ubuntu-server-minimal metapackages. No automatic autoremove is performed. Use apt autoremove --dry-run to inspect candidates; do not automatically remove them. Reassess metapackages and Snap pin before a future release upgrade.
-
-If the display manager is incorrect, run sudo dpkg-reconfigure lightdm in a normal terminal and select lightdm. Keyboard, language and regional settings remain those selected during Ubuntu installation.
+No full system rollback is provided. Test on a fresh disposable installation.
