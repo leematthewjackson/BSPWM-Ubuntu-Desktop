@@ -5,7 +5,7 @@ Based on the owner's active Omarchy report, November 2026. These are intended eq
 | Shortcut | Action |
 |---|---|
 | Super + Space / Alt + Super + Space | Rofi application launcher |
-| Super + Enter / Ctrl + Alt + T | Kitty |
+| Super + Enter / Ctrl + Alt + T | Alacritty |
 | Super + E | Emote emoji picker |
 | Super + Shift + F | Thunar |
 | Super + Shift + B / Enter | Browser |

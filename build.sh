@@ -9,7 +9,7 @@ sudo -v
 echo "==> Install desktop and utilities"
 sudo apt install -y xorg bspwm sxhkd polybar rofi picom lightdm lightdm-gtk-greeter \
  azote feh python3-xlib dunst thunar thunar-archive-plugin thunar-volman tumbler xarchiver \
- kitty flameshot arandr autorandr redshift xfce4-power-manager light-locker \
+ alacritty flameshot arandr autorandr redshift xfce4-power-manager light-locker \
  mate-polkit dex copyq lxappearance gnome-text-editor x11-xserver-utils xclip gnome-calculator playerctl \
  blueman pavucontrol seahorse system-config-printer network-manager-gnome vlc
 
@@ -50,6 +50,8 @@ done
 rmdir "$backup" 2>/dev/null || echo "Previous desktop configs: $backup"
 
 echo "==> Set application defaults"
+# Ubuntu terminal alternative used by file managers and other desktop tools.
+sudo update-alternatives --set x-terminal-emulator /usr/bin/alacritty
 # Run as the desktop user; xdg-mime writes per-user defaults.
 xdg-mime default thunar.desktop inode/directory
 xdg-mime default org.gnome.TextEditor.desktop text/plain

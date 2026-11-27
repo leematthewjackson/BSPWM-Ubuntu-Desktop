@@ -25,7 +25,7 @@ Omit --nvidia for Intel/AMD. This stage follows Dux's working base setup: update
     cd ~/BSPWM-Ubuntu-Desktop
     ./build.sh && sudo reboot
 
-The NVIDIA check is only for NVIDIA installations. Confirm networking works before proceeding. Select lightdm if Ubuntu prompts for a display manager. After the second reboot choose bspwm at LightDM and log in. Super+Enter opens Kitty; run desktop-doctor.
+The NVIDIA check is only for NVIDIA installations. Confirm networking works before proceeding. Select lightdm if Ubuntu prompts for a display manager. After the second reboot choose bspwm at LightDM and log in. Super+Enter opens Alacritty; run desktop-doctor.
 
 There are only two installation scripts. Both run directly in the terminal with normal sudo and package prompts. No external desktop framework is installed. Optional vendor apps remain independent.
 
@@ -33,7 +33,7 @@ There are only two installation scripts. Both run directly in the terminal with 
 
 - Ubuntu's packages, LightDM/PAM, MATE Polkit, GNOME Keyring, XDG desktop autostart via dex.
 - bspwm longest-side tiling, sxhkd, Polybar, Rofi, Picom, Thunar and independent utilities.
-- Existing Ubuntu keyboard, language and regional preferences are untouched; dark theme, one bar per monitor. Ten numbered workspaces are distributed across connected monitors at first login. A single primary system tray; hotplug and mixed DPI need hardware testing.
+- Existing Ubuntu keyboard, language and regional preferences are untouched; light application defaults and independent dark desktop utilities, one bar per monitor. Ten numbered workspaces are distributed across connected monitors at first login. A single primary system tray; hotplug and mixed DPI need hardware testing.
 - Existing desktop configuration files are backed up under ~/.config/bspwm-desktop-backup.*. Scripts run directly in the terminal without output redirection.
 - Prefer native commands and ordinary configuration over custom runtime helpers. No automatic AI, third-party APT repositories or vendor installers in the main installation.
 - Preserve familiar keyboard shortcuts where native bspwm supports them. Do not add compatibility hacks solely to emulate Omarchy.
@@ -50,7 +50,7 @@ Super+Escape opens the system menu. Reboot, Shutdown and Logout are also searcha
 
 ## Application appearance
 
-Regular applications default to light GTK appearance. The session does not force a colour scheme at login. Rofi, Polybar and Kitty retain their independent dark themes. Use LXAppearance (Customise Look and Feel) to select a GTK theme. For applications following the GNOME colour preference, run `gsettings set org.gnome.desktop.interface color-scheme prefer-dark` for dark or `gsettings set org.gnome.desktop.interface color-scheme default` to restore the default. Some applications have their own appearance settings.
+Regular applications default to light GTK appearance. The session does not force a colour scheme at login. Rofi, Polybar and Alacritty retain their independent dark themes. Use LXAppearance (Customise Look and Feel) to select a GTK theme. For applications following the GNOME colour preference, run `gsettings set org.gnome.desktop.interface color-scheme prefer-dark` for dark or `gsettings set org.gnome.desktop.interface color-scheme default` to restore the default. Some applications have their own appearance settings.
 
 ## Wallpaper
 
@@ -58,9 +58,9 @@ Launch Azote from Rofi to browse images and set wallpapers graphically. Azote us
 
 ## Everyday applications
 
-Kitty's terminal shortcuts use native single-instance mode for faster subsequent windows. Thunar starts in daemon mode via XDG autostart to keep the file manager ready between launches.
+Alacritty is the default terminal, selected after testing faster launches. Kitty may remain installed as an optional backup on existing machines; fresh builds do not explicitly install it. Thunar starts in daemon mode via XDG autostart to keep the file manager ready between launches.
 
-APT: VLC, Flameshot, CopyQ, Thunar, Kitty, GNOME Text Editor and Calculator.
+APT: VLC, Flameshot, CopyQ, Thunar, Alacritty, GNOME Text Editor and Calculator.
 Flathub: Firefox (default browser and PDF viewer), Gwenview (images), Nextcloud and Emote.
 Nextcloud starts in the tray at login; sign in manually. CopyQ starts automatically; review its history limits and password/sensitive clipboard handling before use. Super+E opens Emote, Print opens Flameshot, Super+Ctrl+V opens CopyQ. Ctrl+Alt+T and Ctrl+Alt+L are additional Mint-style shortcuts.
 

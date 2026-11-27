@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Read-only checks; no repair or secret retrieval.
-for cmd in bspc sxhkd polybar rofi picom nmcli wpctl flatpak secret-tool lpstat flameshot copyq vlc azote feh; do
+for cmd in alacritty bspc sxhkd polybar rofi picom nmcli wpctl flatpak secret-tool lpstat flameshot copyq vlc azote feh; do
  command -v "$cmd" >/dev/null && echo "OK command $cmd" || echo "MISSING $cmd"
 done
 for unit in lightdm NetworkManager cups bluetooth; do systemctl is-active "$unit" | xargs echo "$unit:"; done

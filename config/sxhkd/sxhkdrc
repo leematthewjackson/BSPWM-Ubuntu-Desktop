@@ -5,9 +5,9 @@ super + space
 super + alt + space
     rofi -show drun
 super + Return
-    kitty --single-instance
+    alacritty
 ctrl + alt + t
-    kitty --single-instance
+    alacritty
 super + e
     flatpak run com.tomjwatson.Emote
 super + shift + {Return,b}
@@ -80,7 +80,7 @@ super + shift + alt + {minus,equal}
 
 # Desktop tools and notifications
 super + k
-    kitty less ~/.config/bspwm/KEYBINDINGS.md
+    alacritty -e less ~/.config/bspwm/KEYBINDINGS.md
 super + ctrl + {a,b,d,n,p}
     {pavucontrol,blueman-manager,arandr,nm-connection-editor,xfce4-power-manager-settings}
 super + {_,alt + }comma
@@ -136,8 +136,8 @@ XF86AudioPause
 super + alt + r
     bspc wm -r
 super + ctrl + alt + k
-    kitty micro ~/.config/sxhkd/sxhkdrc
+    alacritty -e micro ~/.config/sxhkd/sxhkdrc
 super + ctrl + alt + b
-    kitty micro ~/.config/bspwm/bspwmrc
+    alacritty -e micro ~/.config/bspwm/bspwmrc
 super + ctrl + alt + p
-    kitty micro ~/.config/polybar/config.ini
+    alacritty -e micro ~/.config/polybar/config.ini
