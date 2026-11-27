@@ -1,39 +1,108 @@
+# Based on the owner's active Omarchy bindings (November 2026).
+# Application launch
 super + space
+    rofi -show drun
+super + alt + space
     rofi -show drun
 super + Return
     kitty
-super + e
-    thunar
-super + b
+super + shift + {Return,b}
     xdg-open https://www.google.com
-super + w
+super + shift + alt + b
+    flatpak run org.mozilla.firefox --private-window
+super + shift + f
+    thunar
+super + shift + n
+    gnome-text-editor
+super + shift + q
+    gnome-calculator
+XF86Calculator
+    gnome-calculator
+super + ctrl + v
+    copyq toggle
+super + Escape
+    ~/.local/bin/desktop-power
+super + ctrl + l
+    light-locker-command -l
+
+# Window navigation and layouts
+super + {w,q}
     bspc node -c
 super + {Left,Down,Up,Right}
     bspc node -f {west,south,north,east}
 super + shift + {Left,Down,Up,Right}
     bspc node -s {west,south,north,east}
-super + {1-9}
-    bspc desktop -f '^{1-9}'
-super + shift + {1-9}
-    bspc node -d '^{1-9}' --follow
+super + {1,2,3,4,5,6,7,8,9,0}
+    bspc desktop -f '{1,2,3,4,5,6,7,8,9,10}'
+super + shift + {1,2,3,4,5,6,7,8,9,0}
+    bspc node -d '{1,2,3,4,5,6,7,8,9,10}' --follow
+super + shift + alt + {1,2,3,4,5,6,7,8,9,0}
+    bspc node -d '{1,2,3,4,5,6,7,8,9,10}'
+super + {_,shift + }Tab
+    bspc desktop -f {next,prev}.local
+super + ctrl + Tab
+    bspc desktop -f last
+alt + {_,shift + }Tab
+    bspc node -f {next,prev}.local.!hidden.window
+ctrl + alt + {_,shift + }Tab
+    bspc monitor -f {next,prev}
 super + f
     bspc node -t '~fullscreen'
 super + t
     bspc node -t '~floating'
-super + m
+super + p
+    bspc node -t '~pseudo_tiled'
+super + {l,alt + l,ctrl + f}
     bspc desktop -l next
-super + l
-    light-locker-command -l
-super + Escape
-    ~/.local/bin/desktop-power
-super + v
-    copyq toggle
+super + j
+    bspc node @parent -R 90
+super + ctrl + shift + {Left,Down,Up,Right}
+    bspc node -m {west,south,north,east} --follow
+super + shift + alt + {Left,Down,Up,Right}
+    bspc desktop -m {west,south,north,east}
+# Resize via bspwm's edge resizing; opposite-edge fallback for boundary tiles.
+super + {minus,equal}
+    ~/.local/bin/desktop-resize {left,right} 40
+super + shift + {minus,equal}
+    ~/.local/bin/desktop-resize {up,down} 40
+super + alt + {minus,equal}
+    ~/.local/bin/desktop-resize {left,right} 10
+super + shift + alt + {minus,equal}
+    ~/.local/bin/desktop-resize {up,down} 10
+super + ctrl + {minus,equal}
+    ~/.local/bin/desktop-resize {left,right} 100
+super + ctrl + shift + {minus,equal}
+    ~/.local/bin/desktop-resize {up,down} 100
+
+# Desktop tools and notifications
+super + k
+    kitty less ~/.config/bspwm/KEYBINDINGS.md
+super + ctrl + {a,b,d,n,p}
+    {pavucontrol,blueman-manager,arandr,nm-connection-editor,xfce4-power-manager-settings}
+super + {_,alt + }comma
+    dunstctl close
+super + shift + comma
+    dunstctl close-all
+super + ctrl + comma
+    dunstctl context
+super + shift + alt + comma
+    dunstctl history-pop
+super + ctrl + alt + comma
+    dunstctl set-paused toggle
 Print
     flameshot gui
+super + ctrl + alt + c
+    flameshot gui
+
+# Media and brightness
 XF86AudioRaiseVolume
     wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+
 XF86AudioLowerVolume
     wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+alt + XF86AudioRaiseVolume
+    wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 1%+
+alt + XF86AudioLowerVolume
+    wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%-
 XF86AudioMute
     wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
 XF86AudioMicMute
@@ -42,12 +111,29 @@ XF86MonBrightnessUp
     brightnessctl set +5%
 XF86MonBrightnessDown
     brightnessctl set 5%-
+alt + XF86MonBrightnessUp
+    brightnessctl set +1%
+alt + XF86MonBrightnessDown
+    brightnessctl set 1%-
+shift + XF86MonBrightnessUp
+    brightnessctl set 100%
+shift + XF86MonBrightnessDown
+    brightnessctl set 1%
+XF86AudioPlay
+    playerctl play-pause
+XF86AudioPause
+    playerctl pause
+{XF86AudioNext,alt + XF86AudioPlay}
+    playerctl next
+{XF86AudioPrev,alt + shift + XF86AudioPlay}
+    playerctl previous
+
+# Local maintenance shortcuts, not Omarchy equivalents
 super + alt + r
     bspc wm -r
-super + alt + k
+super + ctrl + alt + k
     kitty micro ~/.config/sxhkd/sxhkdrc
-super + alt + b
+super + ctrl + alt + b
     kitty micro ~/.config/bspwm/bspwmrc
-super + alt + p
+super + ctrl + alt + p
     kitty micro ~/.config/polybar/config.ini
-

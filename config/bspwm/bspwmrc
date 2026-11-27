@@ -6,8 +6,11 @@ dbus-update-activation-environment --systemd DISPLAY XAUTHORITY XDG_CURRENT_DESK
 # Keep desktops on the primary monitor; add secondary workspaces on other outputs.
 if ! bspc query -D --names | grep -qx 1; then
  primary=$(bspc query -M --names | head -n1)
- bspc monitor "$primary" -d 1 2 3 4 5 6 7 8 9
+ bspc monitor "$primary" -d 1 2 3 4 5 6 7 8 9 10
 fi
+bspc config pointer_modifier mod4
+bspc config pointer_action1 move
+bspc config pointer_action3 resize_corner
 bspc config border_width 2
 bspc config window_gap 10
 bspc config split_ratio 0.5

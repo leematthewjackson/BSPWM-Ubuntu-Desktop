@@ -4,3 +4,6 @@ First do a read-only review. Report severity, file/line, evidence and proposed f
 
 On a disposable Ubuntu 26.04 VM, run installer, reboot, log in, run desktop-doctor. Verify app launch, tiling, navigation, swap, workspace move, fullscreen, float, monocle, screenshot, clipboard, auth prompts, keyring unlock without second password, USB mount, network shares, Bluetooth, audio, microphone, printing/scanning, Flatpak file chooser, browser screen share, monitor hotplug, power controls and actual lock/suspend security. Test clean second login and rerun installer. Repeat on ThinkPad and NVIDIA workstation only after VM pass. Record exact commands/results; distinguish manual checks from automated checks. No production readiness until all critical tests pass.
 
+
+## Keyboard parity review
+Compare KEYBINDINGS.md against the intended Omarchy workflow. Test sxhkd brace expansion, no duplicate grabs, named workspaces 1–10, monitor transfers, edge-resize directions/fallback, parent rotation, media keys, and actual lock. Check Super+Space, Super+Enter and Super+Shift+F first. Verify no unexpected global shortcuts override application keys. Check multi-monitor and upgrade paths from earlier nine-workspace configuration.

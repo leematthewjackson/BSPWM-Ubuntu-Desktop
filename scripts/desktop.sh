@@ -4,7 +4,7 @@ echo 'lightdm shared/default-x-display-manager select lightdm' | sudo debconf-se
 sudo apt install -y xorg bspwm sxhkd polybar rofi picom lightdm lightdm-gtk-greeter \
  nitrogen dunst thunar thunar-archive-plugin thunar-volman tumbler xarchiver \
  kitty flameshot arandr autorandr redshift xfce4-power-manager light-locker \
- mate-polkit dex copyq lxappearance gnome-text-editor x11-xserver-utils xclip
+ mate-polkit dex copyq lxappearance gnome-text-editor x11-xserver-utils xclip gnome-calculator playerctl
 sudo systemctl enable lightdm.service
 sudo systemctl set-default graphical.target
 sudo install -d /etc/lightdm/lightdm.conf.d
