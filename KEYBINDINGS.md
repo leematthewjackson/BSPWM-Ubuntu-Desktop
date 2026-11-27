@@ -33,9 +33,10 @@ Based on the owner's active Omarchy report, November 2026. These are intended eq
 | Super + P | Pseudo-tiling |
 | Super + J | Rotate parent split (approximation) |
 | Super + L / Alt + Super + L | Toggle tiled/monocle layout |
-| Super + minus / equals | Horizontal resize (minus: left edge; equals: right edge, fallback opposite edge) |
-| Super + Shift + minus / equals | Vertical resize (minus: top edge; equals: bottom edge) |
-| Add Alt / Ctrl to resize | Fine / large increments |
+| Super + minus / equals | Move right edge left / right (40 px) |
+| Super + Shift + minus / equals | Move bottom edge up / down (40 px) |
+| Super + Alt + minus / equals | Move left edge left / right (40 px) |
+| Super + Shift + Alt + minus / equals | Move top edge up / down (40 px) |
 | Super + K | This shortcut guide |
 | Super + Ctrl + A/B/D/N/P | Audio/Bluetooth/display/network/power settings |
 | Super + comma / Super + Alt + comma | Dismiss notification |
@@ -47,7 +48,7 @@ Based on the owner's active Omarchy report, November 2026. These are intended eq
 | Super + Alt + R | Restart bspwm |
 | Super + Ctrl + Alt + K/B/P | Edit shortcuts/window manager/bar |
 
-Media keys: volume, mic mute, playback, brightness; Alt gives fine volume/brightness; Shift brightness sets max/min. Super + mouse left/right uses bspwm move/resize. Hardware and session testing required.
+Media keys: volume, mic mute, playback, brightness; Alt gives fine volume/brightness; Shift brightness sets max/min. Super + mouse left/right uses bspwm move/resize. Keyboard resizing uses native bspwm edge commands directly. If an edge is at the screen boundary, use the opposite-edge shortcut. No automatic fallback or custom resizing helper. Former Ctrl resize variants are not bound. Hardware and session testing required.
 
 ## Deliberately not implemented yet
 

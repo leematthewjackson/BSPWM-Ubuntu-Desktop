@@ -1,6 +1,11 @@
 # Maintainer rules
 
-Keep this a configuration project, not a distribution. No Dux, Hyprland, Omarchy, custom shell, additional core desktop package repository, automatic remote shell installer, mandatory AI, passwordless sudo or weakened PAM/Polkit. Standard Ubuntu packages for core desktop. Prefer simple independent utilities. Keep one entry point, modular scripts, safe backups and understandable configuration. Never claim a test passed without evidence. Do not run the installer on a live workstation without explicit permission. Review security, idempotency and hardware differences before proposing changes. Document every new dependency and decision.
+Keep this a configuration project, not a distribution. The goal is a reliable complete everyday desktop, not an Omarchy clone.
 
-
-Approved application exceptions: official Brave and Sublime Text APT repositories. ArtCraft and Claude Code are opt-in extras only; never call them from install.sh. Desktop+ is excluded. Verify vendor signing keys and keep user approval before executing downloaded installers.
+- Main installer: Ubuntu repositories and Flathub only. No additional vendor repositories, key-verification prompts or downloaded vendor installers in the default installation.
+- Optional applications that require vendor repositories, signing keys or bootstrap installers belong in extras/ and must never be called by install.sh. ArtCraft, Brave, Sublime Text and Claude Code are opt-in. Desktop+ is excluded.
+- Prefer native bspwm commands and configuration of standard utilities over custom runtime wrappers. Do not introduce compatibility hacks solely to emulate another desktop. Preserve familiar shortcuts where practical and document differences.
+- No Dux, Hyprland, Omarchy, custom shell, mandatory AI, passwordless sudo or weakened PAM/Polkit. Keep a single installer entry point and readable modular scripts.
+- Keep essential integration, safe backups, preflight checks, recovery instructions and read-only diagnostics. Avoid extra abstractions unless they clearly reduce complexity.
+- Never claim a test passed without evidence. Do not run the installer on a live workstation without explicit permission. Review security, idempotency and hardware differences before changes. Document each new dependency and decision.
+- Verify all vendor signing keys independently before trusting them; retain explicit consent for downloaded installer execution.

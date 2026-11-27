@@ -25,6 +25,11 @@ while IFS= read -r -d '' source; do
  deploy "$source" "$HOME/.config/$rel" "$mode" "$rel"
 done < <(find "$PROJECT/config" -type f -print0)
 deploy "$PROJECT/KEYBINDINGS.md" "$HOME/.config/bspwm/KEYBINDINGS.md" 644 bspwm/KEYBINDINGS.md
+# Retire the old project resize helper on reruns, preserving a backup.
+if [[ -e "$HOME/.local/bin/desktop-resize" || -L "$HOME/.local/bin/desktop-resize" ]]; then
+ mkdir -p "$backup/bin"
+ mv -- "$HOME/.local/bin/desktop-resize" "$backup/bin/"
+fi
 for source in "$PROJECT"/bin/*; do
  deploy "$source" "$HOME/.local/bin/$(basename "$source")" 755 "bin/$(basename "$source")"
 done

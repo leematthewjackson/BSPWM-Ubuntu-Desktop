@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Read-only checks; no repair or secret retrieval.
-for cmd in bspc sxhkd polybar rofi picom nmcli wpctl flatpak secret-tool lpstat flameshot copyq brave-browser subl vlc; do
+for cmd in bspc sxhkd polybar rofi picom nmcli wpctl flatpak secret-tool lpstat flameshot copyq vlc; do
  command -v "$cmd" >/dev/null && echo "OK command $cmd" || echo "MISSING $cmd"
 done
 for unit in lightdm NetworkManager cups bluetooth; do systemctl is-active "$unit" | xargs echo "$unit:"; done
@@ -34,3 +34,8 @@ bspc query -M --names
 bspc query -D --names
 echo "Portal preferences:"; cat "$HOME/.config/xdg-desktop-portal/bspwm-portals.conf" 2>/dev/null
 echo "Critical manual check: suspend and close lid, resume must require password."
+
+# Optional apps are informational, not requirements for a healthy desktop.
+for cmd in brave-browser subl claude; do
+ if command -v "$cmd" >/dev/null; then echo "OPTIONAL installed: $cmd"; else echo "OPTIONAL not installed: $cmd"; fi
+done

@@ -66,19 +66,17 @@ super + ctrl + shift + {Left,Down,Up,Right}
     bspc node -m {west,south,north,east} --follow
 super + shift + alt + {Left,Down,Up,Right}
     bspc desktop -m {west,south,north,east}
-# Resize via bspwm's edge resizing; opposite-edge fallback for boundary tiles.
+# Native bspwm edge resizing, no wrapper or fallback logic.
+# Minus/equals move the right edge inward/outward; Shift moves the bottom edge.
 super + {minus,equal}
-    ~/.local/bin/desktop-resize {left,right} 40
+    bspc node -z right {-40,40} 0
 super + shift + {minus,equal}
-    ~/.local/bin/desktop-resize {up,down} 40
+    bspc node -z bottom 0 {-40,40}
+# Native opposite-edge controls for tiles against the right/bottom boundary.
 super + alt + {minus,equal}
-    ~/.local/bin/desktop-resize {left,right} 10
+    bspc node -z left {-40,40} 0
 super + shift + alt + {minus,equal}
-    ~/.local/bin/desktop-resize {up,down} 10
-super + ctrl + {minus,equal}
-    ~/.local/bin/desktop-resize {left,right} 100
-super + ctrl + shift + {minus,equal}
-    ~/.local/bin/desktop-resize {up,down} 100
+    bspc node -z top 0 {-40,40}
 
 # Desktop tools and notifications
 super + k
