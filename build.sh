@@ -58,6 +58,18 @@ xdg-mime default org.kde.gwenview.desktop image/jpeg image/png image/gif image/w
 xdg-mime default vlc.desktop video/mp4 video/mpeg video/webm video/x-matroska video/quicktime audio/mpeg audio/ogg audio/wav audio/flac audio/aac
 xdg-mime default xarchiver.desktop application/zip application/gzip application/x-tar application/x-xz application/x-bzip2 application/x-7z-compressed application/vnd.rar application/x-rar
 
+echo "==> Enable touchpad tapping"
+sudo mkdir -p /etc/X11/xorg.conf.d
+sudo tee /etc/X11/xorg.conf.d/40-touchpad.conf >/dev/null <<'EOF'
+Section "InputClass"
+    Identifier "Touchpad settings"
+    MatchIsTouchpad "on"
+    MatchDriver "libinput"
+    Option "Tapping" "on"
+    Option "TappingDrag" "on"
+EndSection
+EOF
+
 echo "==> Configure graphical login"
 # Use the normal Ubuntu package configuration interface if GDM was selected.
 if [[ $(cat /etc/X11/default-display-manager 2>/dev/null || true) != /usr/sbin/lightdm ]] ||

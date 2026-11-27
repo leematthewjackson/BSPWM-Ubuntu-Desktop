@@ -40,6 +40,10 @@ There are only two installation scripts. Both run directly in the terminal with 
 
 The underlying package selection and networking approach are adapted from [Dux Desktop on Ubuntu LTS](https://github.com/leematthewjackson/Dux-Desktop-on-Ubuntu-LTS), without installing Dux.
 
+## Touchpads
+
+Tap-to-click and tap-and-drag are enabled during build.sh using the standard Xorg libinput InputClass configuration, tested on the ThinkPad P53. This applies only to touchpads.
+
 ## Power controls
 
 Super+Escape opens the system menu. Reboot, Shutdown and Logout are also searchable from Super+Space and use the same confirmation prompts.
