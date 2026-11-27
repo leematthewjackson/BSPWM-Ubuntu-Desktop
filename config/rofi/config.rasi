@@ -1,10 +1,38 @@
 configuration {
- modi: "drun,run,window";
- show-icons: true;
- font: "DejaVu Sans 12";
+    modes: "drun,run,window";
+    show-icons: true;
+    font: "DejaVu Sans 12";
 }
-* { background-color: #1e1e2e; text-color: #cdd6f4; }
-window { width: 45%; border: 2px; border-color: #89b4fa; padding: 12px; }
-element { padding: 8px; }
-element selected { background-color: #45475a; }
 
+@theme "default"
+
+* {
+    background: #1e1e2e;
+    foreground: #cdd6f4;
+    normal-background: #1e1e2e;
+    normal-foreground: #cdd6f4;
+    alternate-normal-background: #1e1e2e;
+    alternate-normal-foreground: #cdd6f4;
+    selected-normal-background: #45475a;
+    selected-normal-foreground: #ffffff;
+    background-color: @background;
+    text-color: @foreground;
+    border-color: #89b4fa;
+}
+
+window {
+    width: 45%;
+    border: 2px;
+    border-radius: 10px;
+    padding: 12px;
+}
+
+element {
+    padding: 8px;
+    border-radius: 5px;
+}
+
+element-text, element-icon {
+    background-color: transparent;
+    text-color: inherit;
+}

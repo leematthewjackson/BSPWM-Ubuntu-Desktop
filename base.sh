@@ -83,6 +83,9 @@ sudo apt install -y \
 #   driverless USB printers, network/USB scanners, Simple Scan
 #   Flatpak + AppImage (FUSE 2) support
 #   GNOME Disks (partitions, disk health) + firmware updates
+# Ubuntu brightness-udev grants backlight writes to the video group.
+# Membership also grants access to video devices; applies after login/reboot.
+sudo usermod -aG video "$(id -un)"
 xdg-user-dirs-update
 sudo flatpak remote-add --if-not-exists flathub \
   https://dl.flathub.org/repo/flathub.flatpakrepo

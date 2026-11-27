@@ -2,7 +2,7 @@
 
 Personal keyboard-first X11 desktop on Ubuntu Server 26.04 LTS. No Dux, Omarchy, Hyprland, Snap or AI runtime. The main installer uses only Ubuntu repositories and Flathub. Third-party vendor repositories and installers are separate, optional extras.
 
-**Status: first hardware test confirmed package installation, but exposed terminal and keyboard configuration errors. Two-stage Dux-based installation not yet retested. Use a disposable fresh installation.**
+**Status: two-stage installation successfully tested on a ThinkPad P53 (27 November 2026). Desktop login, core autostart, NVIDIA, Ethernet and audio detection confirmed. Brightness group membership, Polybar spacing and Rofi theme verified manually. New border and corner styling awaits visual testing. Other hardware and peripheral functions still need acceptance testing.**
 
 ## Install
 
@@ -16,7 +16,7 @@ Fresh Ubuntu Server 26.04, normal sudo user, local console, DHCP Ethernet. Keep 
     cd BSPWM-Ubuntu-Desktop
     ./base.sh --nvidia && sudo reboot
 
-Omit --nvidia for Intel/AMD. This stage follows Dux's working base setup: updates, Snap purge/pin, desktop plumbing, Flathub, optional NVIDIA and NetworkManager last. Complete MOK enrolment if prompted.
+Omit --nvidia for Intel/AMD. This stage follows Dux's working base setup: updates, Snap purge/pin, desktop plumbing, Flathub, optional NVIDIA and NetworkManager last. Complete MOK enrolment if prompted. The user is added to the video group for standard Ubuntu backlight permissions.
 
 ### 2. Build the desktop after reboot
 
