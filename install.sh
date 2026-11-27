@@ -2,13 +2,13 @@
 set -Eeuo pipefail
 cd -- "$(dirname -- "$0")"
 export PROJECT="$PWD"
-export NVIDIA=0 APPS=0 NETWORK=1
+export NVIDIA=0 NETWORK=1
 for arg in "$@"; do
  case "$arg" in
  --nvidia) NVIDIA=1;;
- --apps) APPS=1;;
+ --apps) echo 'All everyday apps are now installed by default.';;
  --keep-network) NETWORK=0;;
- *) echo "Usage: ./install.sh [--nvidia] [--apps] [--keep-network]"; exit 2;;
+ *) echo "Usage: ./install.sh [--nvidia] [--keep-network]"; exit 2;;
  esac
 done
 [[ $EUID != 0 ]] || { echo "Run as your normal sudo user"; exit 1; }

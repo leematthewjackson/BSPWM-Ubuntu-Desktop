@@ -7,3 +7,6 @@ On a disposable Ubuntu 26.04 VM, run installer, reboot, log in, run desktop-doct
 
 ## Keyboard parity review
 Compare KEYBINDINGS.md against the intended Omarchy workflow. Test sxhkd brace expansion, no duplicate grabs, named workspaces 1–10, monitor transfers, edge-resize directions/fallback, parent rotation, media keys, and actual lock. Check Super+Space, Super+Enter and Super+Shift+F first. Verify no unexpected global shortcuts override application keys. Check multi-monitor and upgrade paths from earlier nine-workspace configuration.
+
+## Everyday applications and extras
+Verify official Brave/Sublime source definitions and key verification, all Flatpak IDs and exported desktop IDs, MIME defaults from a fresh session, Nextcloud and CopyQ autostart (no duplicate processes), Emote X11 emoji insertion, screenshot capture, Ctrl+Alt+T/L and clipboard privacy settings. Confirm ArtCraft, Claude Code and Desktop+ are absent after default installation. Review extra scripts separately without executing them unless authorised. Check the optional ArtCraft package list, vendor key and source; verify Claude installer consent. Check all new shell scripts with bash -n and ShellCheck.

@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 # Read-only checks; no repair or secret retrieval.
-for cmd in bspc sxhkd polybar rofi picom nmcli wpctl flatpak secret-tool lpstat; do
+for cmd in bspc sxhkd polybar rofi picom nmcli wpctl flatpak secret-tool lpstat flameshot copyq brave-browser subl vlc; do
  command -v "$cmd" >/dev/null && echo "OK command $cmd" || echo "MISSING $cmd"
 done
 for unit in lightdm NetworkManager cups bluetooth; do systemctl is-active "$unit" | xargs echo "$unit:"; done
-for proc in sxhkd polybar picom light-locker gnome-keyring-daemon; do
+for proc in sxhkd polybar picom light-locker gnome-keyring-daemon copyq nextcloud; do
  pgrep -u "$UID" -f "$proc" >/dev/null && echo "RUNNING $proc" || echo "CHECK $proc"
 done
 busctl --user list | grep -E 'org.freedesktop.secrets|org.freedesktop.portal.Desktop' || true
@@ -13,3 +13,12 @@ wpctl status
 lpstat -e
 echo "Manual tests required: authentication, keyring unlock, screen lock, screen sharing, sleep, printing and monitors."
 
+
+for app in org.mozilla.firefox org.kde.gwenview com.nextcloud.desktopclient.nextcloud com.tomjwatson.Emote; do
+ if flatpak info --system "$app" >/dev/null 2>&1; then echo "OK Flatpak $app"; else echo "MISSING Flatpak $app"; fi
+done
+for type in inode/directory text/plain text/html application/pdf image/png video/mp4 application/zip; do
+ echo "Default $type: $(xdg-mime query default "$type")"
+done
+echo "Manual app tests: Super+E emoji paste, Print screenshot, Super+Ctrl+V clipboard, Nextcloud tray, browser/editor launch, file associations."
+echo "Review CopyQ privacy settings; this check does not read clipboard contents."

@@ -1,6 +1,6 @@
 # BSPWM Ubuntu Desktop
 
-Personal keyboard-first X11 desktop on Ubuntu Server 26.04 LTS. No Dux, Omarchy, Hyprland, Snap or AI runtime. Core packages from Ubuntu; Firefox from Flathub.
+Personal keyboard-first X11 desktop on Ubuntu Server 26.04 LTS. No Dux, Omarchy, Hyprland, Snap or AI runtime. Core desktop packages from Ubuntu; everyday applications from Ubuntu, Flathub and the official Brave and Sublime Text repositories.
 
 **Status: initial implementation for review, NOT yet tested on Ubuntu 26.04 or real hardware. Use a disposable VM or spare disk first.**
 
@@ -12,10 +12,10 @@ Fresh Ubuntu Server 26.04, normal sudo user, local console, DHCP Ethernet recomm
     sudo apt install git
     git clone https://github.com/leematthewjackson/BSPWM-Ubuntu-Desktop.git
     cd BSPWM-Ubuntu-Desktop
-    ./install.sh --nvidia --apps
+    ./install.sh --nvidia
     sudo reboot
 
-Omit --nvidia for Intel/AMD. --apps adds VLC, Gwenview and Nextcloud. --keep-network leaves existing Netplan untouched. Installer runs all local stages; no external framework installer. Complete MOK enrolment if prompted. Log in through LightDM (bspwm session). Run desktop-doctor inside the session.
+Omit --nvidia for Intel/AMD. All everyday apps are installed by default; --apps is accepted for backwards compatibility. Verify the Brave and Sublime Text signing keys against their official documentation when prompted. --keep-network leaves existing Netplan untouched. Installer runs all local stages; no external framework installer. Complete MOK enrolment if prompted. Log in through LightDM (bspwm session). Run desktop-doctor inside the session.
 
 ## Design
 
@@ -23,9 +23,17 @@ Omit --nvidia for Intel/AMD. --apps adds VLC, Gwenview and Nextcloud. --keep-net
 - bspwm longest-side tiling, sxhkd, Polybar, Rofi, Picom, Thunar and independent utilities.
 - UK keyboard, dark theme, one bar per monitor. Multi-monitor workspace assignment and mixed DPI need review.
 - Existing configuration files backed up under ~/.local/state/bspwm-desktop. Log there too.
-- No automatic AI, additional APT vendors or arbitrary remote shell scripts.
+- No automatic AI or third-party repositories for core desktop packages. Brave and Sublime Text use their official APT repositories only for applications.
 
 The underlying package selection and networking approach are adapted from [Dux Desktop on Ubuntu LTS](https://github.com/leematthewjackson/Dux-Desktop-on-Ubuntu-LTS), without installing Dux.
+
+## Everyday applications
+
+APT: Brave, Sublime Text, VLC, Flameshot, CopyQ, Thunar, Kitty, GNOME Text Editor and Calculator.
+Flathub: Firefox (default browser and PDF viewer), Gwenview (images), Nextcloud and Emote.
+Nextcloud starts in the tray at login; sign in manually. CopyQ starts automatically; review its history limits and password/sensitive clipboard handling before use. Super+E opens Emote, Print opens Flameshot, Super+Ctrl+V opens CopyQ. Ctrl+Alt+T and Ctrl+Alt+L are additional Mint-style shortcuts.
+
+Optional: see [extras/README.md](extras/README.md) for independent ArtCraft and Claude Code installers. Desktop+ is not included. The main installer never calls either extra.
 
 ## Maintenance
 

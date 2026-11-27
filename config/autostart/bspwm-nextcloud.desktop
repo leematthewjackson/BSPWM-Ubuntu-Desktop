@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=Nextcloud
+Exec=/usr/bin/flatpak run com.nextcloud.desktopclient.nextcloud --background
+Icon=com.nextcloud.desktopclient.nextcloud
+OnlyShowIn=BSPWM;

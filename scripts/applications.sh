@@ -1,10 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
-# Firefox from Flathub avoids Ubuntu's Snap transition and additional APT repos.
-flatpak install --system -y flathub org.mozilla.firefox
-xdg-mime default org.mozilla.firefox.desktop text/html x-scheme-handler/http x-scheme-handler/https application/pdf
-if [[ $APPS == 1 ]]; then
- sudo apt install -y vlc
- flatpak install --system -y flathub org.kde.gwenview com.nextcloud.desktopclient.nextcloud
-fi
-
+sudo apt install -y vlc
+sudo flatpak install --system -y flathub org.mozilla.firefox org.kde.gwenview com.nextcloud.desktopclient.nextcloud com.tomjwatson.Emote
+# Vendor apps are separate from the Ubuntu desktop packages.
+bash "$PROJECT/scripts/vendor-apps.sh"
+bash "$PROJECT/scripts/default-apps.sh"

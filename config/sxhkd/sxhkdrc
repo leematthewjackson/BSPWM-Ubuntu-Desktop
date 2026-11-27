@@ -6,6 +6,10 @@ super + alt + space
     rofi -show drun
 super + Return
     kitty
+ctrl + alt + t
+    kitty
+super + e
+    flatpak run com.tomjwatson.Emote
 super + shift + {Return,b}
     xdg-open https://www.google.com
 super + shift + alt + b
@@ -23,6 +27,8 @@ super + ctrl + v
 super + Escape
     ~/.local/bin/desktop-power
 super + ctrl + l
+    light-locker-command -l
+ctrl + alt + l
     light-locker-command -l
 
 # Window navigation and layouts

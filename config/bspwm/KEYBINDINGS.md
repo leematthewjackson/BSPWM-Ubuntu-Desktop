@@ -5,7 +5,8 @@ Based on the owner's active Omarchy report, November 2026. These are intended eq
 | Shortcut | Action |
 |---|---|
 | Super + Space / Alt + Super + Space | Rofi application launcher |
-| Super + Enter | Kitty |
+| Super + Enter / Ctrl + Alt + T | Kitty |
+| Super + E | Emote emoji picker |
 | Super + Shift + F | Thunar |
 | Super + Shift + B / Enter | Browser |
 | Super + Shift + Alt + B | Private Firefox window |
@@ -13,7 +14,7 @@ Based on the owner's active Omarchy report, November 2026. These are intended eq
 | Super + Shift + Q | Calculator |
 | Super + Ctrl + V | Clipboard history |
 | Super + Escape | Power menu |
-| Super + Ctrl + L | Lock |
+| Super + Ctrl + L / Ctrl + Alt + L | Lock |
 | Super + arrows | Directional focus |
 | Super + Shift + arrows | Swap windows |
 | Super + 1–0 | Workspaces 1–10 |
