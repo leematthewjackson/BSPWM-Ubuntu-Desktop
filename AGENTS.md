@@ -9,3 +9,5 @@ Keep this a configuration project, not a distribution. The goal is a reliable co
 - Keep essential integration, safe backups, simple essential safety checks, recovery instructions and read-only diagnostics. Avoid extra abstractions unless they clearly reduce complexity.
 - Never claim a test passed without evidence. Do not run the installer on a live workstation without explicit permission. Review security, idempotency and hardware differences before changes. Document each new dependency and decision.
 - Verify all vendor signing keys independently before trusting them; retain explicit consent for downloaded installer execution.
+
+Dux setup.sh is the reference for base updates, Snap removal, desktop plumbing and NVIDIA installation. Preserve Ubuntu installation choices (keyboard, language, timezone, locale, storage). No installer-wide output redirection, custom logging, speculative preflight or unattended display-manager workarounds. Use standard Ubuntu configuration dialogues directly. Do not add new features before real-world testing.

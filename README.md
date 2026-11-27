@@ -2,7 +2,7 @@
 
 Personal keyboard-first X11 desktop on Ubuntu Server 26.04 LTS. No Dux, Omarchy, Hyprland, Snap or AI runtime. The main installer uses only Ubuntu repositories and Flathub. Third-party vendor repositories and installers are separate, optional extras.
 
-**Status: initial implementation for review, NOT yet tested on Ubuntu 26.04 or real hardware. Use a disposable VM or spare disk first.**
+**Status: first hardware test confirmed package installation, but exposed terminal and keyboard configuration errors. Revised installer not yet retested. Use a disposable fresh installation.**
 
 ## Install
 
@@ -14,14 +14,14 @@ Fresh Ubuntu Server 26.04, normal sudo user, local console, DHCP Ethernet recomm
     cd BSPWM-Ubuntu-Desktop
     ./install.sh --nvidia && sudo reboot
 
-Omit --nvidia for Intel/AMD. All everyday apps are installed by default; --apps is accepted for backwards compatibility. No additional vendor APT keys or repositories are needed by the main installer. --keep-network leaves existing Netplan untouched; networkd-managed interfaces may appear unmanaged in nm-applet and require manual Wi-Fi configuration. Installer runs all local stages; no external framework installer. Complete MOK enrolment if prompted. Log in through LightDM (bspwm session). Run desktop-doctor inside the session.
+Omit --nvidia for Intel/AMD. All everyday apps are installed by default. No additional vendor APT keys or repositories are needed by the main installer. --keep-network leaves existing Netplan untouched; networkd-managed interfaces may appear unmanaged in nm-applet and require manual Wi-Fi configuration. Installer runs all local stages; no external framework installer. If Ubuntu asks for a display manager, select lightdm. Complete MOK enrolment if prompted. Log in through LightDM (bspwm session). Run desktop-doctor inside the session.
 
 ## Design
 
 - Ubuntu's packages, LightDM/PAM, MATE Polkit, GNOME Keyring, XDG desktop autostart via dex.
 - bspwm longest-side tiling, sxhkd, Polybar, Rofi, Picom, Thunar and independent utilities.
-- UK keyboard, dark theme, one bar per monitor. Ten numbered workspaces are distributed across connected monitors at first login. A single primary system tray; hotplug and mixed DPI need hardware testing.
-- Existing configuration files backed up under ~/.local/state/bspwm-desktop. Log there too.
+- Existing Ubuntu keyboard, language and regional preferences are untouched; dark theme, one bar per monitor. Ten numbered workspaces are distributed across connected monitors at first login. A single primary system tray; hotplug and mixed DPI need hardware testing.
+- Existing desktop configuration files are backed up under ~/.config/bspwm-desktop-backup.*. Installer runs directly in the terminal without output redirection.
 - Prefer native commands and ordinary configuration over custom runtime helpers. No automatic AI, third-party APT repositories or vendor installers in the main installation.
 - Preserve familiar keyboard shortcuts where native bspwm supports them. Do not add compatibility hacks solely to emulate Omarchy.
 
@@ -41,7 +41,7 @@ Optional: see [extras/README.md](extras/README.md) for independent ArtCraft, Bra
 
 ## Maintenance
 
-As in the Dux setup, Snap is purged and pinned out. Ubuntu Server metapackages may be removed because they depend on snapd; the installer marks their installed direct dependencies and recommendations manual before purging and refuses unexpected package removals. Never run autoremove blindly. Review metapackage requirements before a future Ubuntu release upgrade.
+As in the Dux setup, Snap is purged and pinned out. Ubuntu Server metapackages may be removed because they depend on snapd; no automatic autoremove is performed. Never run autoremove blindly. Review metapackage requirements before a future Ubuntu release upgrade.
 
     sudo apt update && sudo apt upgrade
     flatpak update
