@@ -54,6 +54,8 @@ Launch Azote from Rofi to browse images and set wallpapers graphically. Azote us
 
 ## Everyday applications
 
+Kitty's terminal shortcuts use native single-instance mode for faster subsequent windows. Thunar starts in daemon mode via XDG autostart to keep the file manager ready between launches.
+
 APT: VLC, Flameshot, CopyQ, Thunar, Kitty, GNOME Text Editor and Calculator.
 Flathub: Firefox (default browser and PDF viewer), Gwenview (images), Nextcloud and Emote.
 Nextcloud starts in the tray at login; sign in manually. CopyQ starts automatically; review its history limits and password/sensitive clipboard handling before use. Super+E opens Emote, Print opens Flameshot, Super+Ctrl+V opens CopyQ. Ctrl+Alt+T and Ctrl+Alt+L are additional Mint-style shortcuts.

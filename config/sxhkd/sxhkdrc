@@ -5,9 +5,9 @@ super + space
 super + alt + space
     rofi -show drun
 super + Return
-    kitty
+    kitty --single-instance
 ctrl + alt + t
-    kitty
+    kitty --single-instance
 super + e
     flatpak run com.tomjwatson.Emote
 super + shift + {Return,b}

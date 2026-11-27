@@ -1,6 +1,5 @@
 [Desktop Entry]
 Type=Application
-Name=BSPWM thunar
+Name=Thunar Daemon
 Exec=thunar --daemon
-OnlyShowIn=BSPWM;
-
+Terminal=false
